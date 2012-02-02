@@ -42,40 +42,59 @@
 
 package com.sun.jersey.samples.helloworld;
 
-import org.junit.Test;
-import static org.junit.Assert.*;
-
+import javax.ws.rs.ext.RuntimeDelegate;
+import org.apache.cxf.endpoint.Server;
+import org.apache.cxf.jaxrs.JAXRSServerFactoryBean;
 import org.apache.cxf.jaxrs.client.WebClient;
 import javax.ws.rs.core.MediaType;
 
+import org.junit.Test;
+import static org.junit.Assert.*;
+import org.junit.BeforeClass;
+import org.junit.AfterClass;
+
 public class MainTest {
 
-   final String hwURI = "http://localhost:9998/helloworld";
+	final static String hwURI = "http://localhost:9998/helloworld";
+	private static Server server;
 
-    public MainTest() throws Exception {
-    }
+	@BeforeClass
+	public static void initialize() throws Exception {
+		PersonApplication application = new PersonApplication();
+		RuntimeDelegate delegate = RuntimeDelegate.getInstance();
 
-    /**
-     * Test to see that the message "Hello World" is sent in the response.
-     */
-    @Test
-    public void testHelloWorld() {
-        WebClient webResource = WebClient.create(hwURI);        
-        webResource.accept(MediaType.TEXT_PLAIN);
-        String responseMsg = webResource.get(String.class);
-        assertEquals("Hello World", responseMsg);
-    }
+		JAXRSServerFactoryBean bean = delegate.createEndpoint(application,
+				JAXRSServerFactoryBean.class);
+		bean.setAddress("http://localhost:9998" + bean.getAddress());
+		server = bean.create();
+		server.start();
+	}
 
-    /**
-     * Test if a WADL document is available at the relative path
-     * "?_wadl".
-     */
-    @Test
-    public void testApplicationWadl() {
-        WebClient webResource = WebClient.create(hwURI + "?_wadl");        
-        String serviceWadl = webResource.accept("application/xml").get(String.class);
-                
-        assertTrue(serviceWadl.length() > 0);
-    }
+	@AfterClass
+	public static void destroy() throws Exception {
+		server.stop();
+		server.destroy();
+	}
+
+	/**
+	 * Test to see that the message "Hello World" is sent in the response.
+	 */
+	@Test
+	public void testHelloWorld() {
+		WebClient webResource = WebClient.create(hwURI);
+		webResource.accept(MediaType.TEXT_PLAIN);
+		String responseMsg = webResource.get(String.class);
+		assertEquals("Hello World", responseMsg);
+	}
+
+	/**
+	 * Test if a WADL document is available at the relative path "?_wadl".
+	 */
+	@Test
+	public void testApplicationWadl() {
+		WebClient webResource = WebClient.create(hwURI + "?_wadl");
+		String serviceWadl = webResource.accept("application/xml").get(
+				String.class);
+		assertTrue(serviceWadl.length() > 0);
+	}
 }
-

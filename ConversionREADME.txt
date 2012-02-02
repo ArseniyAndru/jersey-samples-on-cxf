@@ -1,5 +1,6 @@
 Conversion Notes
 ----------------
 
-This README holds the Jersey->CXF conversion notes common for many of the samples, maintained here in one place to reduce duplication.  Check the individual README.txt under each converted project for (1) conversion notes specific to that project, and (2) for a list of the common conversion notes below relevant for that project.
+This GitHub repo holds Jersey samples converted to run on CXF's JAX-RS implementation.
+See this blog entry: http://www.jroller.com/gmazza/entry/jersey_samples_on_cxf for conversion notes for each sample converted.
 
