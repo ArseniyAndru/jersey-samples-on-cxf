@@ -68,6 +68,7 @@
 
     <modules>
         <module>helloworld</module>
+        <module>helloworld-webapp</module>
     </modules>
 
     <properties>
