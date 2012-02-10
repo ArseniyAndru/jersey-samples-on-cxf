@@ -80,8 +80,8 @@
         <module>helloworld</module>
         <module>helloworld-webapp</module>
         <module>exceptions</module>
-        <!--module>entity-provider</module>
-        <module>https-clientserver-grizzly</module>
+        <module>entity-provider</module>
+        <!--module>https-clientserver-grizzly</module>
         <module>https-server-glassfish</module>
         <module>jacksonjsonprovider</module>
         <module>json-from-jaxb</module>

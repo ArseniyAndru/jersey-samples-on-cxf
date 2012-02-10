@@ -1,4 +1,4 @@
-package com.sun.jersey.samples.exceptions;
+package com.sun.jersey.samples.entityprovider;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,7 +6,8 @@ import java.util.List;
 import javax.ws.rs.ext.RuntimeDelegate;
 import org.apache.cxf.jaxrs.JAXRSServerFactoryBean;
 import org.apache.cxf.jaxrs.lifecycle.SingletonResourceProvider;
-import com.sun.jersey.samples.exceptions.resources.MyResource;
+import com.sun.jersey.samples.entityprovider.resources.MapResource;
+import com.sun.jersey.samples.entityprovider.resources.PropertiesResource;
 
 public class Main {
 
@@ -14,14 +15,19 @@ public class Main {
         JAXRSServerFactoryBean bean = new JAXRSServerFactoryBean();
 
 		List perRequestResourceList = new ArrayList<Object>();
-        perRequestResourceList.add(MyResource.class);
+        perRequestResourceList.add(PropertiesResource.class);
         // add any additional per-request resources
         bean.setResourceClasses(perRequestResourceList);
     
+        List singletonRequestList = new ArrayList(); 
+        singletonRequestList.add(new SingletonResourceProvider(new MapResource()));
+        // add any more singleton root resources
+        bean.setResourceProviders(singletonRequestList);
+
         List<Object> providerList = new ArrayList<Object>();
-        providerList.add(new MyResource.MyMappedExceptionMapper());
-        providerList.add(new MyResource.MyMappedRuntimeExceptionMapper());
-        providerList.add(new MyResource.MyMappedThrowingExceptionMapper());
+        providerList.add(new FormReader());
+        providerList.add(new FormWriter());
+        providerList.add(new PropertiesProvider());
         bean.setProviders(providerList);
 
         bean.setAddress("http://localhost:9998");
