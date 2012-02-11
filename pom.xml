@@ -81,12 +81,12 @@
         <module>helloworld-webapp</module>
         <module>exceptions</module>
         <module>entity-provider</module>
+        <module>simple-console</module>
+        <module>json-from-jaxb</module>
         <!--module>https-clientserver-grizzly</module>
         <module>https-server-glassfish</module>
         <module>jacksonjsonprovider</module>
-        <module>json-from-jaxb</module>
         <module>jsonp</module>
-        <module>simple-console</module>
         <module>simple-servlet</module-->
     </modules>
 
