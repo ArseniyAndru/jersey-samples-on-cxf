@@ -83,10 +83,10 @@
         <module>entity-provider</module>
         <module>simple-console</module>
         <module>json-from-jaxb</module>
+        <module>jsonp</module>
         <!--module>https-clientserver-grizzly</module>
         <module>https-server-glassfish</module>
         <module>jacksonjsonprovider</module>
-        <module>jsonp</module>
         <module>simple-servlet</module-->
     </modules>
 
