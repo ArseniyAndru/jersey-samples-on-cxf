@@ -15,9 +15,12 @@ public class Main {
 
     protected Main() throws Exception {
         JAXRSServerFactoryBean bean = new JAXRSServerFactoryBean();
-        bean.getInInterceptors().add(new JsonpInInterceptor());
+        JsonpInInterceptor jii = new JsonpInInterceptor();
+        jii.setAcceptType("application/json");
+        bean.getInInterceptors().add(jii);
         bean.getOutInterceptors().add(new JsonpPreStreamInterceptor());
         bean.getOutInterceptors().add(new JsonpPostStreamInterceptor());
+        
 
         List perRequestResourceList = new ArrayList();
         perRequestResourceList.add(ChangeList.class);
