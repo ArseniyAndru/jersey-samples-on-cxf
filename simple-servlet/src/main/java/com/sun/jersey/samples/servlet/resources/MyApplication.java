@@ -49,7 +49,7 @@ import javax.ws.rs.ApplicationPath;
  *
  * @author Jonathan Benoit
  */
-@ApplicationPath("/resources34")
+@ApplicationPath("/resources")
 public class MyApplication extends Application {
     @Override
     public Set<Class<?>> getClasses() {
@@ -59,7 +59,8 @@ public class MyApplication extends Application {
         classes.add(ResourceBean1.class);
         classes.add(ResourceBean2.class);
         classes.add(ResourceBean3.class);
-        classes.add(ResourceBean4.class);        
+        classes.add(ResourceBean4.class);
+        classes.add(org.apache.cxf.jaxrs.provider.DataSourceProvider.class);
         return classes;
     }
 }
