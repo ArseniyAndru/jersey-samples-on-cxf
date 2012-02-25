@@ -1,0 +1,29 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xmlns:jaxrs="http://cxf.apache.org/jaxrs"
+      xmlns:soap="http://cxf.apache.org/bindings/soap"
+      xsi:schemaLocation="
+http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+http://cxf.apache.org/jaxrs
+http://cxf.apache.org/schemas/jaxrs.xsd">
+
+     <import resource="classpath:META-INF/cxf/cxf.xml" />
+
+     <!-- JAX-RS endpoint with two root resource classes -->
+     <jaxrs:server id="personService" address="/">
+        <!-- root resource classes -->
+        <jaxrs:serviceBeans>
+           <ref bean="rootResourceBean"/>
+        </jaxrs:serviceBeans>
+        <!-- custom providers -->
+        <jaxrs:providers>
+           <bean class="com.sun.jersey.samples.https_grizzly.auth.AuthenticationExceptionMapper" />
+        </jaxrs:providers>
+     </jaxrs:server>
+
+     <bean id="rootResourceBean" 
+         class="com.sun.jersey.samples.https_grizzly.resource.RootResource">
+     </bean>
+
+</beans>

@@ -85,10 +85,10 @@
         <module>simple-console</module>
         <module>json-from-jaxb</module>
         <module>jsonp</module>
-        <!--module>https-clientserver-grizzly</module>
-        <module>https-server-glassfish</module>
         <module>jacksonjsonprovider</module>
-        <module>simple-servlet</module-->
+        <module>simple-servlet</module>
+        <module>https-clientserver-grizzly</module>
+        <!--module>https-server-glassfish</module-->
     </modules>
 
     <properties>
