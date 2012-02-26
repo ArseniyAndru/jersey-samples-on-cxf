@@ -77,7 +77,7 @@ public class Server {
     }
 
     protected static void startServer() {
-    	// add Jersey resource servlet
+    	// add CXF resource servlet
         ServletHandler cxfAdapter = new ServletHandler();
         cxfAdapter.setContextPath("/");
         cxfAdapter.setServletInstance(new org.apache.cxf.transport.servlet.CXFServlet());
