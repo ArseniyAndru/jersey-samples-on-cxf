@@ -101,7 +101,10 @@ public class MainTest {
         try {
         	InputStream is = wc.get(InputStream.class);
         } catch (Exception ex) {
-        	assertTrue(ex.getMessage().contains("Internal Error"));
+        	// if using SecurityServletFilter (no JAX-RS exception mapping available) 
+         	// assertTrue(ex.getMessage().contains("Internal Error"));
+        	// if using SecurityCXFJAXRSFilter (which has JAX-RS exception mapping) 
+        	assertTrue(ex.getMessage().contains("Authentication credentials are required"));
         }
     }
 

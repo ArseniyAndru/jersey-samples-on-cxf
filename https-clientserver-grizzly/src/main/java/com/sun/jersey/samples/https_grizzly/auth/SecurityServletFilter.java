@@ -20,11 +20,21 @@ import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.core.HttpHeaders;
 import java.io.IOException;
 
-public class SecurityFilter implements Filter {
+/* Kept inactive in this sample, but provides an alternative
+ * to using a CXF JAX-RS filter for doing authorization.
+ * 
+ * Note if this class is used instead of the SecurityCXFJAXRSFilter,
+ * the AuthenticationException raised below will *not* get mapped
+ * by the AuthenticationExceptionMapper, as Servlet Filter-originated
+ * exceptions are presently outside the scope of JAX-RS exception 
+ * mapping.-- only a 500 response code ("internal server error") 
+ * will get returned instead.
+ */
+public class SecurityServletFilter implements Filter {
 
 	@Context
     UriInfo uriInfo;
-    private static final String REALM = "HTTPS Example authentization";
+    private static final String REALM = "HTTPS Example authentication";
 
     public void doFilter(ServletRequest req, ServletResponse res,
             FilterChain chain) throws IOException, ServletException {

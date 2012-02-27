@@ -19,6 +19,7 @@ http://cxf.apache.org/schemas/jaxrs.xsd">
         <!-- custom providers -->
         <jaxrs:providers>
            <bean class="com.sun.jersey.samples.https_grizzly.auth.AuthenticationExceptionMapper" />
+           <bean class="com.sun.jersey.samples.https_grizzly.auth.SecurityCXFJAXRSFilter" />
         </jaxrs:providers>
      </jaxrs:server>
 
