@@ -53,8 +53,15 @@ import javax.ws.rs.core.MediaType;
 @Path("/nonJAXBResource")
 public class NonJAXBBeanResource {
 
-    @GET @Produces({MediaType.APPLICATION_JSON, "application/x+javascript"})
+	@GET @Produces({MediaType.APPLICATION_JSON, "application/x+javascript"})
     public NonJAXBBean getSimpleBeanJSONP() {
         return new NonJAXBBean();
     }
+    
+    @Path("/msgbean")
+    @GET @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+    public MessageBean getMessage() {
+    	return new MessageBean();
+    }
+    
 }
