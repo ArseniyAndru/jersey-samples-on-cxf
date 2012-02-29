@@ -1,4 +1,4 @@
-package com.sun.jersey.samples.jacksonjsonprovider;
+package com.sun.jersey.samples.jsonfromjaxb.jaxb;
 
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlElement;
@@ -26,6 +26,6 @@ public class MessageBean {
     }
 
     public String getMessage() {
-	    return "abcde";
+	return "abcde";
     }
 }

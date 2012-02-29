@@ -91,4 +91,11 @@ public class ObjectFactory {
         return new Flights();
     }
 
+    /**
+     * Create an instance of {@link MessageBean }
+     * 
+     */
+    public MessageBean createMessageBean() {
+        return new MessageBean();
+    }
 }

@@ -43,6 +43,7 @@ package com.sun.jersey.samples.jsonfromjaxb.resources;
 
 import com.sun.jersey.samples.jsonfromjaxb.jaxb.FlightType;
 import com.sun.jersey.samples.jsonfromjaxb.jaxb.Flights;
+import com.sun.jersey.samples.jsonfromjaxb.jaxb.MessageBean;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.PUT;
@@ -56,6 +57,7 @@ import javax.ws.rs.Produces;
 public class FlightList {
 
     private Flights myFlights;
+    private MessageBean myBean;
 
     /**
      * This class is annotated with @Singleton meaning that only
@@ -79,6 +81,14 @@ public class FlightList {
         flight124.setAircraft("AB115");
         myFlights.getFlight().add(flight123);
         myFlights.getFlight().add(flight124);
+        myBean = new MessageBean();
+    }
+
+    @GET
+    @Produces({"application/json", "application/xml"})
+    @Path("/MyBean")    
+    public synchronized MessageBean getMessageBean() {
+        return myBean;
     }
 
     @GET
