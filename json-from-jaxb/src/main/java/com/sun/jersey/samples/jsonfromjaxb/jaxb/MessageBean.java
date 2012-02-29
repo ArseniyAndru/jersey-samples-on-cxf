@@ -9,11 +9,12 @@ import javax.ws.rs.core.MediaType;
 
 /* For this class (called from NonJAXBBeanResource) XML output returns:
  * <messageBean><message>hello</message></messageBean>
- * but Jackson JSON output returns:
- * {"message":"abcde"}
  * The standard Jettison JSON provider, activated by commenting out the
  * Jackson one in MyApplication.java, returns:
  * {"messageBean":{"message":"hello"}}
+ * Jackson JSON output, activated via uncommenting dependency in pom.xml
+ * and declaration in Main.java returns:
+ * {"message":"abcde"}
  */
 @XmlRootElement
 public class MessageBean {
@@ -22,10 +23,10 @@ public class MessageBean {
     protected String message;
 
     public MessageBean() {
-    	message = "hello";
+        message = "hello";
     }
 
     public String getMessage() {
-	return "abcde";
+        return "abcde";
     }
 }

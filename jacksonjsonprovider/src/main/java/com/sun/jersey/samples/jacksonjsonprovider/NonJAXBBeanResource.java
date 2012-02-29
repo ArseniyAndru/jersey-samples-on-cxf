@@ -58,10 +58,4 @@ public class NonJAXBBeanResource {
         return new NonJAXBBean();
     }
     
-    @Path("/msgbean")
-    @GET @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-    public MessageBean getMessage() {
-    	return new MessageBean();
-    }
-    
 }

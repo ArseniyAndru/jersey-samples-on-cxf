@@ -106,4 +106,16 @@ mvn clean compile exec:java</pre></blockquote>
         <p>You can also see test classes at <code>src/main/test</code> subdirectory
          for detail information how to consume the service using Jersey client API</p>
   </body>
+  
+  <h2>Jettison vs. Jackson Provider differences</h2>
+  
+  <p>You can switch from the default Jettison JSON provider to Jackson by uncommenting the latter's
+  dependency in pom.xml and its activation in Main.java.  Note values returned by Jackson will sometimes
+  differ from those returned by Jettison.  You can see a difference by running this command using
+  each provider:</p>  
+  
+  <blockquote><pre>curl -HAccept:application/json http://localhost:9998/jsonfromjaxb/flights/MyBean</pre></blockquote>
+  
+  <p>See the comments in the jaxb.MessageBean class for more information.</p>   
+  
 </html>
