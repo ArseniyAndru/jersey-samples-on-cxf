@@ -9,8 +9,7 @@ import javax.ws.rs.core.MediaType;
 
 /* For this class (called from NonJAXBBeanResource) XML output returns:
  * <messageBean><message>hello</message></messageBean>
- * The standard Jettison JSON provider, activated by commenting out the
- * Jackson one in MyApplication.java, returns:
+ * The Jettison JSON provider this example uses by default returns:
  * {"messageBean":{"message":"hello"}}
  * Jackson JSON output, activated via uncommenting dependency in pom.xml
  * and declaration in Main.java returns:
