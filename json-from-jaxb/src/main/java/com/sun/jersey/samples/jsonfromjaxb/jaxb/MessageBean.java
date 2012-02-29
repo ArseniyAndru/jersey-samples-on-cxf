@@ -7,13 +7,22 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-/* For this class (called from NonJAXBBeanResource) XML output returns:
+/* This object is available from resources.FlightList.  
+ * Both CXF and Jersey, its XML output returns:
  * <messageBean><message>hello</message></messageBean>
- * The Jettison JSON provider this example uses by default returns:
- * {"messageBean":{"message":"hello"}}
- * Jackson JSON output, activated via uncommenting dependency in pom.xml
- * and declaration in Main.java returns:
+ * 
+ * For JSON/Jettison (default with this example)
+ * CXF: {"messageBean":{"message":"hello"}}
+ * Jersey: {"message":"hello"}
+ * (Jersey uses an older Jettison dependency, 1.1 vs. 1.3.1 for CXF)
+ * 
+ * For JSON/Jackson (both CXF and Jersey):
  * {"message":"abcde"}
+ * Note Jackson calls the accessor method to determine
+ * the value of message while Jettison does not.
+ * 
+ * (For this CXF example, Jackson can be activated by uncommenting
+ * relevant code in Main.java and the pom.xml)
  */
 @XmlRootElement
 public class MessageBean {
