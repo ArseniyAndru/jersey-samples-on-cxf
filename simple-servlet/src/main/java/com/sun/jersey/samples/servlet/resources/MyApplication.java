@@ -52,13 +52,19 @@ public class MyApplication extends Application {
     @Override
     public Set<Class<?>> getClasses() {
         final Set<Class<?>> classes = new HashSet<Class<?>>();
-        // register root resources/providers
+        // register root resources
         classes.add(MasterResourceBean.class);
         classes.add(ResourceBean1.class);
         classes.add(ResourceBean2.class);
         classes.add(ResourceBean3.class);
         classes.add(ResourceBean4.class);
-        classes.add(org.apache.cxf.jaxrs.provider.DataSourceProvider.class);
         return classes;
+    }
+    
+    public Set<Object> getSingletons() {
+        // register providers and Singleton root resources 
+        final Set<Object> objs = new HashSet<Object>();
+        objs.add(new org.apache.cxf.jaxrs.provider.DataSourceProvider());
+        return objs;
     }
 }

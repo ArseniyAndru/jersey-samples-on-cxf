@@ -140,7 +140,6 @@ public class ResourceBean3  {
        return urlProps;        
     }
 
-/*    
     @Produces("image/jpg")
     @GET
     public DataSource getImageRep() {
@@ -148,8 +147,8 @@ public class ResourceBean3  {
         return new FileDataSource(jpgURL.getFile());
       
     } 
-*/
-    
+/*    
+    // traditional (non-DataSource) method
     @Produces("image/jpg")
     @GET
     public InputStream getImageRep() {
@@ -161,6 +160,7 @@ public class ResourceBean3  {
           System.out.println("Couldn't find file!");
        }
        return fis;
-    }        
+    }
+*/
     
 }
