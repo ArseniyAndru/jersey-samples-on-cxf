@@ -42,7 +42,6 @@
 
 package com.sun.jersey.samples.servlet.resources;
 
-import org.apache.cxf.jaxrs.impl.MetadataMap;
 import java.net.URL;
 import javax.activation.DataSource;
 import javax.activation.FileDataSource;
@@ -60,6 +59,8 @@ import java.io.InputStream;
 import java.net.URL;
 import java.io.File;
 import java.io.IOException;
+import org.apache.cxf.jaxrs.ext.form.Form;
+import org.apache.cxf.jaxrs.impl.MetadataMap;
 
 
 @Path("/resource3/{arg1}/{arg2}")
@@ -126,6 +127,22 @@ public class ResourceBean3  {
                         +arg1+" arg2: "+arg2+"\n\n";
     }    
     
+
+    @Produces("application/x-www-form-urlencoded")
+    @GET
+    public Form getFormURLEncodedRep(
+           @PathParam("arg1")String arg1, 
+           @PathParam("arg2")String arg2) {
+       Form urlProps = new Form();
+       urlProps.set("representation", "FormURLEncodedRepresentation");
+       urlProps.set("name", "Master Duke");
+       urlProps.set("sex", "male");
+       urlProps.set("arg1", arg1);
+       urlProps.set("arg2", arg2);
+       return urlProps;        
+    }
+    
+/*  // traditional (non-Form) method
     @Produces("application/x-www-form-urlencoded")
     @GET
     public MultivaluedMap getFormURLEncodedRep(
@@ -139,15 +156,19 @@ public class ResourceBean3  {
        urlProps.add("arg2", arg2);
        return urlProps;        
     }
+*/
 
+/*  Patch for this to work applied in CXF 2.5.3; replaces below
+    method.
     @Produces("image/jpg")
     @GET
     public DataSource getImageRep() {
         URL jpgURL = this.getClass().getResource("java.jpg");
         return new FileDataSource(jpgURL.getFile());
       
-    } 
-/*    
+    }
+*/
+
     // traditional (non-DataSource) method
     @Produces("image/jpg")
     @GET
@@ -161,6 +182,6 @@ public class ResourceBean3  {
        }
        return fis;
     }
-*/
+
     
 }

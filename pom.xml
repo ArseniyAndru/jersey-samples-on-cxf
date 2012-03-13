@@ -90,6 +90,7 @@
         <module>simple-servlet</module>
         <module>https-clientserver-grizzly</module>
         <module>https-server-glassfish</module>
+        <!--module>moxy</module-->
     </modules>
 
     <properties>
@@ -209,6 +210,12 @@
                     <groupId>org.glassfish</groupId>
                     <artifactId>maven-embedded-glassfish-plugin</artifactId>
                     <version>3.1.1</version>
+                    <configuration>
+                       <app>${basedir}/target/${project.build.finalName}.war</app>
+                       <ports>
+                          <http-listener>8080</http-listener>
+                       </ports>
+                    </configuration>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.felix</groupId>

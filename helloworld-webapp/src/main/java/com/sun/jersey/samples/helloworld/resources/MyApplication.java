@@ -36,6 +36,8 @@
  * and therefore, elected the GPL Version 2 license, then the option applies
  * only if the new code is made subject to such option by the copyright
  * holder.
+ *
+ * "Portions Copyright 2012 Talend
  */
 
 package com.sun.jersey.samples.helloworld.resources;
@@ -43,13 +45,7 @@ package com.sun.jersey.samples.helloworld.resources;
 import java.util.HashSet;
 import java.util.Set;
 import javax.ws.rs.core.Application;
-import javax.ws.rs.ApplicationPath;
 
-/**
- *
- * @author Jonathan Benoit
- */
-@ApplicationPath("/")
 public class MyApplication extends Application {
     @Override
     public Set<Class<?>> getClasses() {

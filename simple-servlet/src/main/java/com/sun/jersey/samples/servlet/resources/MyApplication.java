@@ -47,7 +47,7 @@ import java.util.Set;
 import javax.ws.rs.core.Application;
 import javax.ws.rs.ApplicationPath;
 
-@ApplicationPath("/resources")
+// @ApplicationPath("/resources")
 public class MyApplication extends Application {
     @Override
     public Set<Class<?>> getClasses() {
