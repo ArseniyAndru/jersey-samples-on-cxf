@@ -1,7 +1,7 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
  *
- * Copyright (c) 2012 Talend. All rights reserved.
+ * Copyright (c) 2010-2011 Oracle and/or its affiliates. All rights reserved.
  *
  * The contents of this file are subject to the terms of either the GNU
  * General Public License Version 2 only ("GPL") or the Common Development
@@ -36,39 +36,66 @@
  * and therefore, elected the GPL Version 2 license, then the option applies
  * only if the new code is made subject to such option by the copyright
  * holder.
- *
- * "Portions 2012 Talend
  */
-package com.sun.jersey.samples.helloworld;
 
-import java.util.HashSet;
-import java.util.Set;
 
-import javax.ws.rs.ApplicationPath;
-import javax.ws.rs.core.Application;
+package com.sun.jersey.samples.moxy.beans;
 
-import com.sun.jersey.samples.helloworld.resources.HelloWorldResource;
+/**
+ *
+ * @author Jakub Podlesak
+ */
+public class Address {
 
-/*
-* Class that can be used (instead of XML-based configuration) to inform the JAX-RS
-* runtime about the resources and providers it is supposed to deploy. See the
-* Main class for more information.
-*/
-@ApplicationPath("/")
-public class PersonApplication extends Application {
-    @Override
-    public Set<Class<?>> getClasses() {
-        return new HashSet<Class<?>>();
+    private String street;
+    private String city;
+
+    public Address(){}
+
+    public Address(String street, String city) {
+        this.street = street;
+        this.city = city;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
     }
 
     @Override
-    public Set<Object> getSingletons() {
-        Set<Object> classes = new HashSet<Object>();
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Address other = (Address) obj;
+        if ((this.street == null) ? (other.street != null) : !this.street.equals(other.street)) {
+            return false;
+        }
+        if ((this.city == null) ? (other.city != null) : !this.city.equals(other.city)) {
+            return false;
+        }
+        return true;
+    }
 
-        HelloWorldResource hwr = new HelloWorldResource();
-        classes.add(hwr);
-
-        return classes;
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 29 * hash + (this.street != null ? this.street.hashCode() : 0);
+        hash = 29 * hash + (this.city != null ? this.city.hashCode() : 0);
+        return hash;
     }
 }
-

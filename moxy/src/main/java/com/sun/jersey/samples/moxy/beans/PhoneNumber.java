@@ -1,7 +1,7 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
  *
- * Copyright (c) 2012 Talend. All rights reserved.
+ * Copyright (c) 2010-2011 Oracle and/or its affiliates. All rights reserved.
  *
  * The contents of this file are subject to the terms of either the GNU
  * General Public License Version 2 only ("GPL") or the Common Development
@@ -36,39 +36,70 @@
  * and therefore, elected the GPL Version 2 license, then the option applies
  * only if the new code is made subject to such option by the copyright
  * holder.
- *
- * "Portions 2012 Talend
  */
-package com.sun.jersey.samples.helloworld;
 
-import java.util.HashSet;
-import java.util.Set;
+package com.sun.jersey.samples.moxy.beans;
 
-import javax.ws.rs.ApplicationPath;
-import javax.ws.rs.core.Application;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlValue;
 
-import com.sun.jersey.samples.helloworld.resources.HelloWorldResource;
+/**
+ *
+ * @author Jakub Podlesak
+ */
+public class PhoneNumber {
 
-/*
-* Class that can be used (instead of XML-based configuration) to inform the JAX-RS
-* runtime about the resources and providers it is supposed to deploy. See the
-* Main class for more information.
-*/
-@ApplicationPath("/")
-public class PersonApplication extends Application {
-    @Override
-    public Set<Class<?>> getClasses() {
-        return new HashSet<Class<?>>();
+    private String type;
+    private String value;
+
+    public PhoneNumber() {}
+
+    public PhoneNumber(String type, String value) {
+        this.type = type;
+        this.value = value;
+    }
+
+    @XmlAttribute
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    @XmlValue
+    public String getValue() {
+        return value;
+    }
+
+    public void setValue(String value) {
+        this.value = value;
     }
 
     @Override
-    public Set<Object> getSingletons() {
-        Set<Object> classes = new HashSet<Object>();
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final PhoneNumber other = (PhoneNumber) obj;
+        if ((this.type == null) ? (other.type != null) : !this.type.equals(other.type)) {
+            return false;
+        }
+        if ((this.value == null) ? (other.value != null) : !this.value.equals(other.value)) {
+            return false;
+        }
+        return true;
+    }
 
-        HelloWorldResource hwr = new HelloWorldResource();
-        classes.add(hwr);
-
-        return classes;
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 59 * hash + (this.type != null ? this.type.hashCode() : 0);
+        hash = 59 * hash + (this.value != null ? this.value.hashCode() : 0);
+        return hash;
     }
 }
-

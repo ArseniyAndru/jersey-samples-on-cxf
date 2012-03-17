@@ -88,6 +88,9 @@
              <plugin>
                 <groupId>org.glassfish</groupId>
                 <artifactId>maven-embedded-glassfish-plugin</artifactId>
+                <configuration>
+                    <name>helloworld-webapp</name>
+                </configuration>
             </plugin>
             <plugin>
               <groupId>org.mortbay.jetty</groupId>

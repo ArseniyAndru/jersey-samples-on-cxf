@@ -1,7 +1,7 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
  *
- * Copyright (c) 2012 Talend. All rights reserved.
+ * Copyright (c) 2010-2011 Oracle and/or its affiliates. All rights reserved.
  *
  * The contents of this file are subject to the terms of either the GNU
  * General Public License Version 2 only ("GPL") or the Common Development
@@ -36,39 +36,45 @@
  * and therefore, elected the GPL Version 2 license, then the option applies
  * only if the new code is made subject to such option by the copyright
  * holder.
- *
- * "Portions 2012 Talend
  */
-package com.sun.jersey.samples.helloworld;
 
-import java.util.HashSet;
-import java.util.Set;
+package com.sun.jersey.samples.moxy;
 
-import javax.ws.rs.ApplicationPath;
-import javax.ws.rs.core.Application;
+import com.sun.jersey.samples.moxy.beans.Address;
+import com.sun.jersey.samples.moxy.beans.Customer;
+import com.sun.jersey.samples.moxy.beans.PhoneNumber;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
+import javax.ws.rs.PUT;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
 
-import com.sun.jersey.samples.helloworld.resources.HelloWorldResource;
+@Path("/customer")
+public class CustomerResource {
 
-/*
-* Class that can be used (instead of XML-based configuration) to inform the JAX-RS
-* runtime about the resources and providers it is supposed to deploy. See the
-* Main class for more information.
-*/
-@ApplicationPath("/")
-public class PersonApplication extends Application {
-    @Override
-    public Set<Class<?>> getClasses() {
-        return new HashSet<Class<?>>();
+    private static Customer customer = createInitialCustomer();
+
+    @GET
+    @Produces(MediaType.APPLICATION_XML)
+    public Customer getCustomer() {
+        return customer;
     }
 
-    @Override
-    public Set<Object> getSingletons() {
-        Set<Object> classes = new HashSet<Object>();
+    @PUT
+    @Consumes(MediaType.APPLICATION_XML)
+    public void setCustomer(Customer c) {
+        customer = c;
+    }
 
-        HelloWorldResource hwr = new HelloWorldResource();
-        classes.add(hwr);
+    private static Customer createInitialCustomer() {
+        Customer result = new Customer();
 
-        return classes;
+        result.setName("Jane Doe");
+        result.setAddress(new Address("123 Any Street", "My Town"));
+        result.getPhoneNumbers().add(new PhoneNumber("work", "613-555-1111"));
+        result.getPhoneNumbers().add(new PhoneNumber("cell", "613-555-2222"));
+
+        return result;
     }
 }
-
