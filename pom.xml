@@ -80,6 +80,11 @@
                 <artifactId>jetty-webapp</artifactId>
                 <version>7.5.4.v20111024</version>
             </dependency>
+            <dependency>
+                <groupId>org.eclipse.persistence</groupId>
+                <artifactId>org.eclipse.persistence.moxy</artifactId>
+                <version>2.3.2</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -96,6 +101,7 @@
         <module>https-clientserver-grizzly</module>
         <module>https-server-glassfish</module>
         <module>moxy</module>
+        <module>moxy-oxm-mapping</module>
     </modules>
 
     <properties>
