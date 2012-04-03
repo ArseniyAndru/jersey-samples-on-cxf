@@ -45,6 +45,7 @@ package com.sun.jersey.samples.moxy;
 import java.util.HashSet;
 import java.util.Set;
 import javax.ws.rs.core.Application;
+import org.apache.cxf.jaxrs.provider.JAXBElementProvider;
 
 public class MyApplication extends Application {
     @Override
@@ -58,6 +59,9 @@ public class MyApplication extends Application {
     public Set<Object> getSingletons() {
         // register providers and Singleton root resources 
         final Set<Object> objs = new HashSet<Object>();
+        JAXBElementProvider jep = new JAXBElementProvider();
+        jep.setSkipJaxbChecks(true);
+        objs.add(jep);
         objs.add(new com.sun.jersey.samples.moxy.MoxyContextResolver());
         return objs;
     }

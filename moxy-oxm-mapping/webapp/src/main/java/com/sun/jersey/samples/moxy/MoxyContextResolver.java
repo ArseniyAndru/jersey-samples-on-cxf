@@ -39,6 +39,7 @@
  *
  * Class originally com.sun.jersey.moxy.MoxyContextResolver from
  * Jersey distribution. 
+ * 
  * Portions Copyright 2012 Talend
  */
 package com.sun.jersey.samples.moxy;
