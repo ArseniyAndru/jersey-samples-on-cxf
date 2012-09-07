@@ -48,7 +48,7 @@
     <parent>
         <groupId>org.talend.jersey.cxf</groupId>
         <artifactId>jersey-to-cxf-samples</artifactId>
-        <version>1.11</version>
+        <version>1.13</version>
     </parent>
     <artifactId>entity-provider</artifactId>
     <name>Entity provider - Jersey to CXF sample</name>

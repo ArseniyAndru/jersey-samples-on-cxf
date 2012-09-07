@@ -46,7 +46,7 @@
     <parent>
         <groupId>org.talend.jersey.cxf</groupId>
         <artifactId>jersey-to-cxf-samples</artifactId>
-        <version>1.11</version>
+        <version>1.13</version>
     </parent>
     <artifactId>simple-console</artifactId>
     <name>Simple Console - Jersey to CXF sample</name>
@@ -73,6 +73,10 @@
                 <dependency>
                    <groupId>org.codehaus.jackson</groupId>
                    <artifactId>jackson-jaxrs</artifactId>
+                </dependency>
+                <dependency>
+                   <groupId>org.codehaus.jettison</groupId>
+                   <artifactId>jettison</artifactId>
                 </dependency>
             </dependencies>
         </profile>

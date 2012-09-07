@@ -47,7 +47,7 @@
     <parent>
         <groupId>org.talend.jersey.cxf</groupId>
         <artifactId>jersey-to-cxf-samples</artifactId>
-        <version>1.11</version>
+        <version>1.13</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>jacksonjsonprovider</artifactId>
@@ -127,8 +127,12 @@
                     <artifactId>junit</artifactId>
                 </dependency>
                 <dependency>
-                   <groupId>org.codehaus.jackson</groupId>
-                   <artifactId>jackson-jaxrs</artifactId>
+                    <groupId>org.codehaus.jackson</groupId>
+                    <artifactId>jackson-jaxrs</artifactId>
+                </dependency>
+                <dependency>
+                    <groupId>org.apache.cxf</groupId>
+                    <artifactId>cxf-rt-rs-extension-providers</artifactId>
                 </dependency>
             </dependencies>
         </profile>

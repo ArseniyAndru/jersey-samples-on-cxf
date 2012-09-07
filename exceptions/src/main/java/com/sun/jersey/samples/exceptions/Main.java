@@ -6,6 +6,7 @@ import java.util.List;
 import javax.ws.rs.ext.RuntimeDelegate;
 import org.apache.cxf.jaxrs.JAXRSServerFactoryBean;
 import org.apache.cxf.jaxrs.lifecycle.SingletonResourceProvider;
+import org.apache.cxf.jaxrs.impl.WebApplicationExceptionMapper;
 import com.sun.jersey.samples.exceptions.resources.MyResource;
 
 public class Main {
@@ -18,10 +19,19 @@ public class Main {
         // add any additional per-request resources
         bean.setResourceClasses(perRequestResourceList);
     
+        /* 
+         *  Normally not necessary to explicitly add WebApplicationExceptionMapper to
+         *  provider list.  Doing so here to change printStackTrace's value from default 
+         *  so WAEM's will output to server console (as it does by default with Jersey)
+         */
+        WebApplicationExceptionMapper waem = new WebApplicationExceptionMapper();
+        waem.setPrintStackTrace(true);
+
         List<Object> providerList = new ArrayList<Object>();
         providerList.add(new MyResource.MyMappedExceptionMapper());
         providerList.add(new MyResource.MyMappedRuntimeExceptionMapper());
         providerList.add(new MyResource.MyMappedThrowingExceptionMapper());
+        providerList.add(waem);
         bean.setProviders(providerList);
 
         bean.setAddress("http://localhost:9998");

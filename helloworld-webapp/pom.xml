@@ -46,7 +46,7 @@
     <parent>
         <groupId>org.talend.jersey.cxf</groupId>
         <artifactId>jersey-to-cxf-samples</artifactId>
-        <version>1.11</version>
+        <version>1.13</version>
     </parent>
     <artifactId>helloworld-webapp</artifactId>
     <name>Helloworld WebApp - Jersey to CXF Sample</name>

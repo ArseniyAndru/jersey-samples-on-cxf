@@ -45,10 +45,12 @@ package com.sun.jersey.samples.https_grizzly;
 //import com.sun.jersey.samples.https_grizzly.auth.SecurityServletFilter;
 import org.glassfish.grizzly.http.server.HttpServer;
 import org.glassfish.grizzly.http.server.NetworkListener;
-import org.glassfish.grizzly.servlet.ServletHandler;
+import org.glassfish.grizzly.http.server.ServerConfiguration;
+import org.glassfish.grizzly.servlet.ServletRegistration;
+import org.glassfish.grizzly.servlet.WebappContext;
 import org.glassfish.grizzly.ssl.SSLContextConfigurator;
 import org.glassfish.grizzly.ssl.SSLEngineConfigurator;
-import org.glassfish.grizzly.http.server.ServerConfiguration;
+import org.apache.cxf.transport.servlet.CXFServlet;
 
 import javax.ws.rs.core.UriBuilder;
 import java.io.IOException;
@@ -78,11 +80,11 @@ public class Server {
 
     protected static void startServer() {
     	// add CXF resource servlet
-        ServletHandler cxfAdapter = new ServletHandler();
-        cxfAdapter.setContextPath("/");
-        cxfAdapter.setServletInstance(new org.apache.cxf.transport.servlet.CXFServlet());
-        cxfAdapter.addServletListener("org.springframework.web.context.ContextLoaderListener");
-        cxfAdapter.addContextParameter("contextConfigLocation", "beans.xml");
+        WebappContext context = new WebappContext("context");
+        ServletRegistration registration = 
+            context.addServlet("ServletContainer", CXFServlet.class);
+        context.addListener("org.springframework.web.context.ContextLoaderListener");
+        context.addContextInitParameter("contextConfigLocation", "beans.xml");
 
         // add security servlet filter (to handle http basic authentication)
         // commented-out because by default this sample uses a CXF JAX-RS filter (see beans.xml)
@@ -108,11 +110,12 @@ public class Server {
             		new SSLEngineConfigurator(sslContext).setClientMode(false).setNeedClientAuth(true));
             webServer.addListener(listener);
             
-            ServerConfiguration config = webServer.getServerConfiguration();
-            config.addHttpHandler(cxfAdapter, getBaseURI().getPath());            
+//            ServerConfiguration config = webServer.getServerConfiguration();
+//            config.addHttpHandler(cxfAdapter, getBaseURI().getPath());            
             
             // start Grizzly embedded server //
             System.out.println("CXF app started. Try out " + BASE_URI + "\nHit CTRL + C to stop it...");
+            context.deploy(webServer);
             webServer.start();
 
         } catch (Exception ex) {

@@ -46,7 +46,7 @@
     <parent>
         <groupId>org.talend.jersey.cxf</groupId>
         <artifactId>jersey-to-cxf-samples</artifactId>
-        <version>1.11</version>
+        <version>1.13</version>
     </parent>
     <artifactId>https-server-glassfish</artifactId>
     <name>HTTPS Server - Jersey GlassFish - Jersey to CXF sample</name>

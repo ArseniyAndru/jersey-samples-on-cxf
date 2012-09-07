@@ -158,8 +158,6 @@ public class ResourceBean3  {
     }
 */
 
-/*  Patch for this to work applied in CXF 2.5.3; replaces below
-    method.
     @Produces("image/jpg")
     @GET
     public DataSource getImageRep() {
@@ -167,9 +165,8 @@ public class ResourceBean3  {
         return new FileDataSource(jpgURL.getFile());
       
     }
-*/
-
-    // traditional (non-DataSource) method
+/*
+    // Traditional (non-DataSource) method of above
     @Produces("image/jpg")
     @GET
     public InputStream getImageRep() {
@@ -182,6 +179,5 @@ public class ResourceBean3  {
        }
        return fis;
     }
-
-    
+*/    
 }
