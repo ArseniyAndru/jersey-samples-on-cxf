@@ -114,10 +114,10 @@
         <module>jsonp</module>
         <module>jacksonjsonprovider</module>
         <module>simple-servlet</module>
-        <module>https-clientserver-grizzly</module>
+        <!--module>https-clientserver-grizzly</module-->
         <module>https-server-glassfish</module>
-        <module>moxy</module>
-        <module>moxy-oxm-mapping</module>
+        <!--module>moxy</module-->
+        <!--module>moxy-oxm-mapping</module-->
     </modules>
 
     <properties>
