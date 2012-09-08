@@ -72,16 +72,17 @@
                     <groupId>org.apache.cxf</groupId>
                     <artifactId>cxf-rt-rs-extension-providers</artifactId>
                 </dependency>
-                <!-- Use below for Jettison JSON provider -->
-                <!--dependency>
-                    <groupId>org.codehaus.jettison</groupId>
-                     <artifactId>jettison</artifactId>
-                </dependency-->
-                <!-- Use below for alternative Jackson JSON provider -->
+                <!-- Use below for Jackson JSON provider -->
                 <dependency>
                    <groupId>org.codehaus.jackson</groupId>
                    <artifactId>jackson-jaxrs</artifactId>
                 </dependency>
+                <!-- Comment-out above & use below for alternative Jettison JSON provider
+                     also update jsonfromjaxb.Main to switch to this provider -->
+                <!--dependency>
+                    <groupId>org.codehaus.jettison</groupId>
+                    <artifactId>jettison</artifactId>
+                </dependency-->
                 <dependency>
                     <groupId>junit</groupId>
                     <artifactId>junit</artifactId>

@@ -14,7 +14,7 @@ import javax.ws.rs.core.MediaType;
  * For JSON/Jettison (default with this example)
  * CXF: {"messageBean":{"message":"hello"}}
  * Jersey: {"message":"hello"}
- * (Jersey uses an older Jettison dependency, 1.1 vs. 1.3.1 for CXF)
+ * (Jersey uses an older Jettison dependency, 1.1 vs. 1.3.2 for CXF)
  * 
  * For JSON/Jackson (both CXF and Jersey):
  * {"message":"abcde"}

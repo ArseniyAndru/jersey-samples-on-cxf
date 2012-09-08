@@ -18,11 +18,11 @@ public class Main {
         perRequestResourceList.add(AircraftTypeList.class);
         bean.setResourceClasses(perRequestResourceList);
         
-        // Choose either Jettison or Jackson JSON provider (see README)
-        // & update pom.xml for correct dependency.
+        // Choose either Jackson or Jettison provider (see README)
+        // & update pom.xml with correct dependency.
         List<Object> providerList = new ArrayList<Object>();
-//        providerList.add(new org.apache.cxf.jaxrs.provider.json.JSONProvider());
         providerList.add(new org.codehaus.jackson.jaxrs.JacksonJsonProvider());
+//      providerList.add(new org.apache.cxf.jaxrs.provider.json.JSONProvider());
         bean.setProviders(providerList);
  
         List singletonRequestList = new ArrayList(); 

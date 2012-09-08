@@ -55,10 +55,8 @@
   <body>
     <h1>JsonFromJaxb Example</h1>
     <p>This example demonstrates how to use JSON representation of JAXB based resources. 
-    <p>A simple web application is presented with two resources: a flight list and a aircraft type list. A client can obtain
-the former list or update it using XML or JSON representation. The second list is read-only and shows how to provide JSON array using List&lt;JAXBBean&gt; objects.
-     
-
+    <p>A simple web application is presented with two resources: a flight list and a aircraft type list. A client can obtain the former list or update it using XML or JSON representation. The second list is read-only and shows how to provide JSON array using List&lt;JAXBBean&gt; objects.</p>
+    <p>This CXF sample offers a choice of two different JSON parsing libraries: <a href="http://wiki.fasterxml.com/JacksonHome">Jackson</a> and <a href="http://jettison.codehaus.org/">Jettison</a>.  The download is configured to use Jackson (the parser used in the Jersey version of this example) but to switch to Jettison update the pom.xml and jsonfromjaxb/Main.java as indicated within those files.</p>
     <h2>Contents</h2>
     <p>The flight list web resource is implemented by <code>com.sun.jersey.samples.jsonfromjaxb.resources.FlightList</code> class.
     The aircraft type list web resource is implemented by <code>com.sun.jersey.samples.jsonfromjaxb.resources.AircraftTypeList</code> class.
@@ -107,10 +105,9 @@ mvn clean compile exec:java</pre></blockquote>
          for detail information how to consume the service using Jersey client API</p>
   </body>
   
-  <h2>Jettison vs. Jackson Provider differences</h2>
+  <h2>Jackson vs. Jettison JSON Provider differences</h2>
   
-  <p>You can switch from the default Jettison JSON provider to Jackson by uncommenting the latter's
-  dependency in pom.xml and its activation in Main.java.  Note values returned by Jackson will sometimes
+  <p>See above for switching from Jackson to Jettison.  Note values returned by Jackson will sometimes
   differ from those returned by Jettison.  You can see a difference by running this command using
   each provider:</p>  
   
