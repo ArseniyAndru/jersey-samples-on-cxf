@@ -17,6 +17,10 @@ public class Main {
         JAXRSServerFactoryBean bean = delegate.createEndpoint(new MyApplication(), 
             JAXRSServerFactoryBean.class);
         
+//        List<Object> providerList = new ArrayList<Object>();
+//        providerList.add(new org.codehaus.jackson.jaxrs.JacksonJsonProvider());
+//        bean.setProviders(providerList);
+ 
         // Activate JSONP functionality 
         JsonpInInterceptor jii = new JsonpInInterceptor();
         jii.setAcceptType("application/json");

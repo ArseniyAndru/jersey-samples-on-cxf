@@ -54,7 +54,7 @@ import javax.ws.rs.core.MediaType;
 @Path("combinedAnnotations")
 public class CombinedAnnotationResource {
 
-    @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+    @Produces(MediaType.APPLICATION_JSON)
     @GET
     public CombinedAnnotationBean getAccount() {
         return new CombinedAnnotationBean(12);

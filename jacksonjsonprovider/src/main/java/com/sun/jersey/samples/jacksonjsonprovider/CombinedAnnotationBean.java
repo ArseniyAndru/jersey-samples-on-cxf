@@ -37,49 +37,28 @@
  * only if the new code is made subject to such option by the copyright
  * holder.
  * 
- * Portions Copyright 2012 Talend
  */
 package com.sun.jersey.samples.jacksonjsonprovider;
 
 import javax.xml.bind.annotation.XmlRootElement;
 import org.codehaus.jackson.annotate.JsonProperty;
 
+/**
+ *
+ * @author japod
+ */
 @XmlRootElement(name = "account")
 public class CombinedAnnotationBean {
 
     @JsonProperty("value")
     int x;
-    
-    @JsonProperty("strOneAlias")
-    String string1;
 
-    @JsonProperty("strTwoAlias")
-    public String string2;
-
-    @JsonProperty("strThreeAlias")
-    protected String string3;
-
-    @JsonProperty("strFourAlias")
-    private String string4;
-
-    String string5;
-    public String string6;
-    protected String string7;
-    private String string8;
-    
     public CombinedAnnotationBean(int x) {
         this.x = x;
-        string1 = "firstVal";
-        string2 = "secondVal";
-        string3 = "thirdVal";
-        string4 = "fourthVal";
-        string5 = "fifthVal";
-        string6 = "sixthVal";
-        string7 = "seventhVal";
-        string8 = "eighthVal";
     }
 
     public CombinedAnnotationBean() {
         this(15);
     }
 }
+
