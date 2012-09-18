@@ -18,8 +18,11 @@ public class Main {
         perRequestResourceList.add(AircraftTypeList.class);
         bean.setResourceClasses(perRequestResourceList);
         
-        // Choose either Jackson or Jettison provider (see README)
-        // & update pom.xml with correct dependency.
+        /* Choose either Jackson or Jettison provider (see README)
+         * and update pom.xml with correct dependency.  In CXF,
+         * Jettison is default if neither specified, but its Maven
+         * dependency will still need to be declared.
+         */
         List<Object> providerList = new ArrayList<Object>();
         providerList.add(new org.codehaus.jackson.jaxrs.JacksonJsonProvider());
 //      providerList.add(new org.apache.cxf.jaxrs.provider.json.JSONProvider());
