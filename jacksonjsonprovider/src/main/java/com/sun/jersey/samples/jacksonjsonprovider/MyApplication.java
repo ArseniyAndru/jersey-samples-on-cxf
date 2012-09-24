@@ -61,6 +61,7 @@ public class MyApplication extends Application {
         
         // register providers
         classes.add(org.codehaus.jackson.jaxrs.JacksonJsonProvider.class);
+        classes.add(MyObjectMapperProvider.class);
 
         return classes;
     }
