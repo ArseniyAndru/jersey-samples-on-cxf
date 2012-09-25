@@ -74,8 +74,7 @@ public class MainTest {
      */
     @Test
     public void testSSLWithAuth() {
-//      System.out.println("Sending HTTPS GET to retrieve Hello World string");
-//      System.out.println("Path = " + Server.BASE_URI.toString());
+        System.out.println("***** testSSLwithAuth(): should work");
         WebClient wc = WebClient.create(Server.BASE_URI.toString(), "user", "password",
            CLIENT_CONFIG_FILE);
 
@@ -96,14 +95,12 @@ public class MainTest {
      */
     @Test
     public void testHTTPBasicAuth1() {
+        System.out.println("***** testHTTPBasicAuth1(): should fail");
         WebClient wc = WebClient.create(Server.BASE_URI.toString(), CLIENT_CONFIG_FILE);
 
         try {
         	InputStream is = wc.get(InputStream.class);
         } catch (Exception ex) {
-        	// if using SecurityServletFilter (no JAX-RS exception mapping available) 
-         	// assertTrue(ex.getMessage().contains("Internal Error"));
-        	// if using SecurityCXFJAXRSFilter (which has JAX-RS exception mapping) 
         	assertTrue(ex.getMessage().contains("Authentication credentials are required"));
         }
     }
@@ -115,7 +112,8 @@ public class MainTest {
      */
     @Test
     public void testSSLAuth1() {
-        WebClient wc = WebClient.create(Server.BASE_URI.toString(), "user", "password",
+       System.out.println("***** testSSLAuth1(): should fail");
+       WebClient wc = WebClient.create(Server.BASE_URI.toString(), "user", "password",
        		CLIENT_CONFIG_NOKEY_FILE);
 
         try {
@@ -126,4 +124,5 @@ public class MainTest {
         	assertTrue(msg.contains("ClientWebApplicationException"));
         }
     }
+
 }

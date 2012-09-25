@@ -42,7 +42,6 @@
 
 package com.sun.jersey.samples.https_grizzly;
         
-//import com.sun.jersey.samples.https_grizzly.auth.SecurityServletFilter;
 import org.glassfish.grizzly.http.server.HttpServer;
 import org.glassfish.grizzly.http.server.NetworkListener;
 import org.glassfish.grizzly.http.server.ServerConfiguration;
@@ -86,10 +85,6 @@ public class Server {
         context.addListener("org.springframework.web.context.ContextLoaderListener");
         context.addContextInitParameter("contextConfigLocation", "beans.xml");
 
-        // add security servlet filter (to handle http basic authentication)
-        // commented-out because by default this sample uses a CXF JAX-RS filter (see beans.xml)
-//      cxfAdapter.addFilter(new SecurityServletFilter(), "AuthorizationFilter", null);
-              
         // Grizzly ssl configuration
         SSLContextConfigurator sslContext = new SSLContextConfigurator();
         
