@@ -55,7 +55,6 @@
     </parent>
 
     <artifactId>moxy-oxm-mapping</artifactId>
-    <version>1.12</version>
     <name>MOXy OXM Mapping - CXF Sample</name>
 
     <packaging>pom</packaging>

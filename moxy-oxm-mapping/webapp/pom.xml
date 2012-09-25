@@ -48,7 +48,7 @@
     <parent>
         <groupId>org.talend.jersey.cxf</groupId>
         <artifactId>moxy-oxm-mapping</artifactId>
-        <version>1.12</version>
+        <version>1.13</version>
     </parent>
 
     <repositories>
@@ -78,11 +78,6 @@
          <plugins>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <inherited>true</inherited>
-                <configuration>
-                    <source>1.6</source>
-                    <target>1.6</target>
-                </configuration>
             </plugin>
             <!-- Run the application using "mvn embedded-glassfish:run" -->
              <plugin>
@@ -129,7 +124,7 @@
                 <dependency>
                     <groupId>org.talend.jersey.cxf.moxy-oxm-mapping</groupId>
                     <artifactId>beans</artifactId>
-                    <version>1.12</version>
+                    <version>1.13</version>
                 </dependency>
             </dependencies>
         </profile>
