@@ -65,7 +65,7 @@
         <module>https-server-glassfish</module>
         <module>moxy</module>
         <module>moxy-oxm-mapping</module>
-        <!--module>https-clientserver-grizzly</module-->
+        <module>https-clientserver-grizzly</module>
     </modules>
 
     <dependencyManagement>
