@@ -50,13 +50,8 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
-import javax.ws.rs.core.EntityTag;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.net.URI;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import org.apache.cxf.jaxrs.client.WebClient;
 import com.sun.jersey.samples.storageservice.Container;
 import com.sun.jersey.samples.storageservice.Item;
@@ -80,7 +75,6 @@ public class MainTest {
 	@Ignore
 	public void testApplicationWadl() {
 		WebClient wc = WebClient.create(Main.BASE_URI);
-		wc.back(true);
 		String serviceWadl = wc.query("_wadl", null).accept(MediaType.TEXT_XML).get(String.class);
 		assertTrue("Looks like the expected wadl was not generated", serviceWadl.length() > 0);
 	}
@@ -111,7 +105,7 @@ public class MainTest {
 		Container quotesContainer = new Container("quotes", Main.BASE_URI + "/quotes");
 
 		// PUT the container "quotes"
-		Response response = wc.path("containers").path("quotes").put(quotesContainer);
+		Response response = wc.path("containers/quotes").put(quotesContainer);
 		assertEquals(createdResponse, response.getStatus());
 
 		// PUT the items to be added to the "quotes" container
@@ -133,7 +127,7 @@ public class MainTest {
 
 		// check that there are four items in the container "quotes"
 		wc.back(true);
-		wc.path("containers").path("quotes");
+		wc.path("containers/quotes");
 		Container container = wc.accept(MediaType.APPLICATION_XML).get(Container.class);
 		int numberOfItems = container.getItem().size();
 		int expectedNumber = 4;
@@ -159,7 +153,7 @@ public class MainTest {
 		Container quotesContainer = new Container("quotes", Main.BASE_URI + "/quotes");
 
 		// PUT the container "quotes"
-		Response response = wc.path("containers").path("quotes").put(quotesContainer);
+		Response response = wc.path("containers/quotes").put(quotesContainer);
 
 		// PUT the items to be added to the "quotes" container
 		response = wc.path("3").type(MediaType.TEXT_PLAIN).put("catch the conscience of the king");
@@ -203,7 +197,7 @@ public class MainTest {
 		Container quotesContainer = new Container("quotes", Main.BASE_URI + "/quotes");
 
 		// PUT the container "quotes"
-		Response response = wc.path("containers").path("quotes").put(quotesContainer);
+		Response response = wc.path("containers/quotes").put(quotesContainer);
 		response = wc.path("1").type(MediaType.TEXT_PLAIN)
 				.put("Something is rotten in the state of Denmark");
 		wc.back(false);
@@ -219,7 +213,7 @@ public class MainTest {
 
 		// search the container for all items containing the word "king"
 		wc.back(true);
-		wc.path("containers").path("quotes");
+		wc.path("containers/quotes");
 		wc.query("search", "king");
 		Container container = wc.accept(MediaType.APPLICATION_XML).get(Container.class);
 		int numberOfItems = (container.getItem() == null) ? 0 : container.getItem().size();
@@ -241,7 +235,7 @@ public class MainTest {
 		Container quotesContainer = new Container("quotes", Main.BASE_URI + "/quotes");
 
 		// PUT the container "quotes"
-		Response response = wc.path("containers").path("quotes").put(quotesContainer);
+		Response response = wc.path("containers/quotes").put(quotesContainer);
 
 		// delete the container
 		wc.delete();

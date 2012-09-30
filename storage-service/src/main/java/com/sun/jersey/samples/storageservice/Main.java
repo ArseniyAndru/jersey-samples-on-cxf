@@ -40,7 +40,6 @@
  * Portions Copyright 2012 Talend
  *
  */
-
 package com.sun.jersey.samples.storageservice;
 
 import java.util.ArrayList;
@@ -48,7 +47,6 @@ import java.util.List;
 
 import javax.ws.rs.ext.RuntimeDelegate;
 import org.apache.cxf.jaxrs.JAXRSServerFactoryBean;
-import org.apache.cxf.jaxrs.lifecycle.SingletonResourceProvider;
 import com.sun.jersey.samples.storageservice.resources.ContainersResource;
 
 public class Main {
