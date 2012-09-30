@@ -113,21 +113,17 @@ public class MainTest {
 				.put("Something is rotten in the state of Denmark");
 		assertEquals(createdResponse, response.getStatus());
 
-		wc.back(false);
-		response = wc.path("2").type(MediaType.TEXT_PLAIN).put("I could be bounded in a nutshell");
+		response = wc.back(false).path("2").type(MediaType.TEXT_PLAIN).put("I could be bounded in a nutshell");
 		assertEquals(createdResponse, response.getStatus());
 
-		wc.back(false);
-		response = wc.path("3").type(MediaType.TEXT_PLAIN).put("catch the conscience of the king");
+		response = wc.back(false).path("3").type(MediaType.TEXT_PLAIN).put("catch the conscience of the king");
 		assertEquals(createdResponse, response.getStatus());
 
-		wc.back(false);
-		response = wc.path("4").type(MediaType.TEXT_PLAIN).put("Get thee to a nunnery");
+		response = wc.back(false).path("4").type(MediaType.TEXT_PLAIN).put("Get thee to a nunnery");
 		assertEquals(createdResponse, response.getStatus());
 
 		// check that there are four items in the container "quotes"
-		wc.back(true);
-		wc.path("containers/quotes");
+		wc.back(true).path("containers/quotes");
 		Container container = wc.accept(MediaType.APPLICATION_XML).get(Container.class);
 		int numberOfItems = container.getItem().size();
 		int expectedNumber = 4;
@@ -200,21 +196,15 @@ public class MainTest {
 		Response response = wc.path("containers/quotes").put(quotesContainer);
 		response = wc.path("1").type(MediaType.TEXT_PLAIN)
 				.put("Something is rotten in the state of Denmark");
-		wc.back(false);
-		response = wc.path("2").type(MediaType.TEXT_PLAIN).put("I could be bounded in a nutshell");
-		wc.back(false);
-		response = wc.path("3").type(MediaType.TEXT_PLAIN).put("catch the conscience of the king");
-		wc.back(false);
-		response = wc.path("4").type(MediaType.TEXT_PLAIN).put("Get thee to a nunnery");
+		response = wc.back(false).path("2").type(MediaType.TEXT_PLAIN).put("I could be bounded in a nutshell");
+		response = wc.back(false).path("3").type(MediaType.TEXT_PLAIN).put("catch the conscience of the king");
+		response = wc.back(false).path("4").type(MediaType.TEXT_PLAIN).put("Get thee to a nunnery");
 
 		// delete item 3
-		wc.back(false);
-		wc.path("3").delete();
+		wc.back(false).path("3").delete();
 
 		// search the container for all items containing the word "king"
-		wc.back(true);
-		wc.path("containers/quotes");
-		wc.query("search", "king");
+		wc.back(true).path("containers/quotes").query("search", "king");
 		Container container = wc.accept(MediaType.APPLICATION_XML).get(Container.class);
 		int numberOfItems = (container.getItem() == null) ? 0 : container.getItem().size();
 		int expectedNumber = 0;

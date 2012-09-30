@@ -12,4 +12,5 @@ cp ../moxy-oxm-mapping/README.html moxy-oxm-mapping.html
 cp ../simple-console/README.html simple-console.html
 cp ../simple-servlet/README.html simple-servlet.html
 cp ../storage-service/README.html storage-service.html
+cp ../jaxb/README.html jaxb.html
 # scp *.html ...:public_html/restexamples
