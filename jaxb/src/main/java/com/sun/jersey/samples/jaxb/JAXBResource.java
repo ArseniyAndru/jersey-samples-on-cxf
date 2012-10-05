@@ -36,6 +36,8 @@
  * and therefore, elected the GPL Version 2 license, then the option applies
  * only if the new code is made subject to such option by the copyright
  * holder.
+ *
+ * Portions Copyright 2012 Talend
  */
 package com.sun.jersey.samples.jaxb;
 
@@ -47,13 +49,7 @@ import javax.ws.rs.Produces;
 import javax.xml.bind.JAXBElement;
 import javax.xml.namespace.QName;
 import org.apache.cxf.jaxrs.ext.xml.XMLInstruction;
-// http://cxf.apache.org/docs/jax-rs-advanced-xml.html#JAX-RSAdvancedXML-XMLProcessingInstructions
-//import com.sun.jersey.api.provider.jaxb.XmlHeader;
 
-/**
- *
- * @author Paul.Sandoz@Sun.Com
- */
 @Path("/jaxb")
 @Produces("application/xml")
 @Consumes("application/xml")
@@ -67,7 +63,6 @@ public class JAXBResource {
 
     @Path("XmlRootElementWithHeader")
     @GET
-//  @XmlHeader("<?xml-stylesheet type='text/xsl' href='foobar.xsl' ?>")
     @XMLInstruction("<?xml-stylesheet type='text/xsl' href='foobar.xsl'?>")
     public JAXBXmlRootElement getRootElementWithHeader() {
         return new JAXBXmlRootElement("xml root element");
