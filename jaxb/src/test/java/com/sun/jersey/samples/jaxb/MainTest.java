@@ -62,53 +62,51 @@ import org.apache.cxf.jaxrs.provider.JAXBElementProvider;
 
 public class MainTest {
 
-	@Before
-	public void setUp() throws Exception {
-		Main.startServer();
-	}
+    @Before
+    public void setUp() throws Exception {
+        Main.startServer();
+    }
 
-	@After
-	public void tearDown() throws Exception {
-		Main.stopServer();
-	}
+    @After
+    public void tearDown() throws Exception {
+        Main.stopServer();
+    }
 
-	/**
-	 * Test checks that an application.wadl file is present for the resource.
-	 */
-	@Test
-	public void testApplicationWadl() {
-		WebClient wc = WebClient.create(Main.BASE_URI);
-		String serviceWadl = wc.path("jaxb").query("_wadl", "").accept(MediaType.TEXT_XML).get(String.class);
-		assertTrue("Looks like the expected wadl was not generated", serviceWadl.length() > 0);
-	}
+    /**
+     * Test checks that an application.wadl file is present for the resource.
+     */
+    @Test
+    public void testApplicationWadl() {
+        WebClient wc = WebClient.create(Main.BASE_URI);
+        String serviceWadl = wc.path("jaxb").query("_wadl", "").accept(MediaType.TEXT_XML)
+                .get(String.class);
+        assertTrue("Looks like the expected wadl was not generated", serviceWadl.length() > 0);
+    }
 
     @Test
     public void testRootElement() {
-		WebClient wc = WebClient.create(Main.BASE_URI);
-        JAXBXmlRootElement e1 = wc.path("jaxb/XmlRootElement").
-                get(JAXBXmlRootElement.class);
+        WebClient wc = WebClient.create(Main.BASE_URI);
+        
+        JAXBXmlRootElement e1 = wc.path("jaxb/XmlRootElement").get(JAXBXmlRootElement.class);
 
-        JAXBXmlRootElement e2 = wc.type("application/xml").
-                post(e1, JAXBXmlRootElement.class);
+        JAXBXmlRootElement e2 = wc.type("application/xml").post(e1, JAXBXmlRootElement.class);
 
         assertEquals(e1, e2);
     }
 
-
     @Test
     public void testRootElementWithHeader() {
-		WebClient wc = WebClient.create(Main.BASE_URI);
-        String e1 = wc.path("jaxb/XmlRootElement").
-                get(String.class);
+        WebClient wc = WebClient.create(Main.BASE_URI);
+        String e1 = wc.path("jaxb/XmlRootElement").get(String.class);
 
-        String e2 = wc.back(false).path("XmlRootElementWithHeader").
-                get(String.class);
+        String e2 = wc.back(false).path("XmlRootElementWithHeader").get(String.class);
 
-        assertTrue(e2.contains(
-        		"<?xml-stylesheet type='text/xsl' href='http://localhost:9998/foobar.xsl'?>")
+        assertTrue(e2
+                .contains("<?xml-stylesheet type='text/xsl' href='http://localhost:9998/foobar.xsl'?>")
                 && e2.contains(e1.substring(e1.indexOf("?>") + 2).trim()));
     }
-/*
+
+    /*
     @Test
     public void testJAXBElement() {
 		WebClient wc = WebClient.create(Main.BASE_URI);
@@ -128,25 +126,23 @@ public class MainTest {
 
     @Test
     public void testXmlType() {
-		JAXBElementProvider provider = new JAXBElementProvider();
-		provider.setUnmarshallAsJaxbElement(true);
+        JAXBElementProvider provider = new JAXBElementProvider();
+        provider.setUnmarshallAsJaxbElement(true);
 
-		WebClient wc = WebClient.create(Main.BASE_URI, Collections.singletonList(provider)); 
-		
-		JAXBXmlType t1 = wc.path("jaxb/JAXBElement").
-                get(JAXBXmlType.class);
+        WebClient wc = WebClient.create(Main.BASE_URI, Collections.singletonList(provider));
 
-        JAXBElement<JAXBXmlType> e = new JAXBElement<JAXBXmlType>(
-                new QName("jaxbXmlRootElement"),
-                JAXBXmlType.class,
-                t1);
+        JAXBXmlType t1 = wc.path("jaxb/JAXBElement").get(JAXBXmlType.class);
 
-        JAXBXmlType t2 = wc.back(false).path("XmlType").type("application/xml").
-                post(e, JAXBXmlType.class);
+        JAXBElement<JAXBXmlType> e = new JAXBElement<JAXBXmlType>(new QName("jaxbXmlRootElement"),
+                JAXBXmlType.class, t1);
+
+        JAXBXmlType t2 = wc.back(false).path("XmlType").type("application/xml")
+                .post(e, JAXBXmlType.class);
 
         assertEquals(t1, t2);
     }
-/*    
+
+    /*    
     @Test
     public void testRootElementCollection() {
         WebResource webResource = resource();
@@ -186,17 +182,16 @@ public class MainTest {
 
     @Test
     public void testRootElementArray() {
-		WebClient wc = WebClient.create(Main.BASE_URI);
 
-		JAXBXmlRootElement[] ae1 = wc.path("jaxb/array/XmlRootElement").
-                get(JAXBXmlRootElement[].class);
-        
-		JAXBXmlRootElement[] ae2 = wc.
-                type("application/xml").
-                post(ae1, JAXBXmlRootElement[].class);
+        WebClient wc = WebClient.create(Main.BASE_URI);
+
+        JAXBXmlRootElement[] ae1 = wc.path("jaxb/array/XmlRootElement").get(
+                JAXBXmlRootElement[].class);
+
+        JAXBXmlRootElement[] ae2 = wc.type("application/xml").post(ae1, JAXBXmlRootElement[].class);
 
         assertEquals(ae1.length, ae2.length);
-        
+
         for (int i = 0; i < ae1.length; i++)
             assertEquals(ae1[i], ae2[i]);
     }
