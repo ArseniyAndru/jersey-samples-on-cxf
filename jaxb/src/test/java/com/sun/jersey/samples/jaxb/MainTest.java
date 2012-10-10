@@ -42,6 +42,7 @@
 package com.sun.jersey.samples.jaxb;
 
 import java.util.Collection;
+import java.util.Collections;
 
 import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.MediaType;
@@ -57,6 +58,7 @@ import org.junit.After;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import org.apache.cxf.jaxrs.client.WebClient;
+import org.apache.cxf.jaxrs.provider.JAXBElementProvider;
 
 public class MainTest {
 
@@ -74,10 +76,9 @@ public class MainTest {
 	 * Test checks that an application.wadl file is present for the resource.
 	 */
 	@Test
-	@Ignore
 	public void testApplicationWadl() {
 		WebClient wc = WebClient.create(Main.BASE_URI);
-		String serviceWadl = wc.path("jaxb").query("_wadl", null).accept(MediaType.TEXT_XML).get(String.class);
+		String serviceWadl = wc.path("jaxb").query("_wadl", "").accept(MediaType.TEXT_XML).get(String.class);
 		assertTrue("Looks like the expected wadl was not generated", serviceWadl.length() > 0);
 	}
 
@@ -123,12 +124,15 @@ public class MainTest {
 
         assertEquals(e1.getValue(), e2.getValue());
     }
-    
+*/    
 
     @Test
     public void testXmlType() {
-		WebClient wc = WebClient.create(Main.BASE_URI);
+		JAXBElementProvider provider = new JAXBElementProvider();
+		provider.setUnmarshallAsJaxbElement(true);
 
+		WebClient wc = WebClient.create(Main.BASE_URI, Collections.singletonList(provider)); 
+		
 		JAXBXmlType t1 = wc.path("jaxb/JAXBElement").
                 get(JAXBXmlType.class);
 
@@ -142,7 +146,7 @@ public class MainTest {
 
         assertEquals(t1, t2);
     }
-    
+/*    
     @Test
     public void testRootElementCollection() {
         WebResource webResource = resource();
@@ -196,19 +200,28 @@ public class MainTest {
         for (int i = 0; i < ae1.length; i++)
             assertEquals(ae1[i], ae2[i]);
     }
-/*
+
     @Test
+    @Ignore("Not supported in CXF")
     public void testXmlTypeArray() {
 		WebClient wc = WebClient.create(Main.BASE_URI);
 
         JAXBXmlRootElement[] ae1 = wc.path("jaxb/array/XmlRootElement").
                 get(JAXBXmlRootElement[].class);
 
-        // fail in CXF
+        /* Jersey apparently supports seamless conversion
+         * of JAXB classes where the underlying XML elements and
+         * attributes are equivalent.  Here, the swapping between
+         * JAXBXmlRootElement and JAXBXmlType.  CXF does not
+         * plan to offer this support.
+         */
+        
+        // fail in CXF, post() requires JAXBXmlRootElement[].class
         JAXBXmlType[] at1 = wc.back(false).path("XmlType").
                 type("application/xml").
                 post(ae1, JAXBXmlType[].class);
 
+        // fail in CXF, get() returns JAXBXmlRootElement[]
         JAXBXmlType[] at2 = wc.back(false).path("XmlRootElement").
                 get(JAXBXmlType[].class);
 
@@ -216,5 +229,5 @@ public class MainTest {
         for (int i = 0; i < at1.length; i++)
             assertEquals(at1[i], at2[i]);
     }
-*/    
+    
 }

@@ -46,6 +46,7 @@ import java.util.List;
 
 import javax.ws.rs.ext.RuntimeDelegate;
 import org.apache.cxf.jaxrs.JAXRSServerFactoryBean;
+import org.apache.cxf.jaxrs.provider.JAXBElementProvider;
 import com.sun.jersey.samples.jaxb.JAXBResource;
 import com.sun.jersey.samples.jaxb.JAXBCollectionResource;
 import com.sun.jersey.samples.jaxb.JAXBArrayResource;
@@ -71,12 +72,19 @@ public class Main {
         if (server == null) {
             JAXRSServerFactoryBean bean = new JAXRSServerFactoryBean();      
 
+            JAXBElementProvider jEProvider = new JAXBElementProvider();
+            jEProvider.setUnmarshallAsJaxbElement(true); 
+            
             List perRequestResourceList = new ArrayList();
             perRequestResourceList.add(JAXBResource.class);
             perRequestResourceList.add(JAXBCollectionResource.class);
             perRequestResourceList.add(JAXBArrayResource.class);
             bean.setResourceClasses(perRequestResourceList);
-        
+
+            List<Object> providerList = new ArrayList<Object>();
+            providerList.add(jEProvider);
+            bean.setProviders(providerList);            
+            
             bean.setAddress(BASE_URI);
             server = bean.create();
         }
