@@ -39,14 +39,15 @@
     only if the new code is made subject to such option by the copyright
     holder.
 
-    Portions Copyright 2012 Talend.    
+    Portions Copyright 2012 Talend   
+    Portions Copyright 2013 Glen Mazza
 -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>org.talend.jersey.cxf</groupId>
+        <groupId>org.gmazza.jersey.cxf</groupId>
         <artifactId>jersey-to-cxf-samples</artifactId>
-        <version>1.13</version>
+        <version>1.17</version>
     </parent>
     <artifactId>simple-console</artifactId>
     <name>Simple Console - Jersey to CXF sample</name>
@@ -108,7 +109,6 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
-                <version>1.1</version>
                 <executions>
                     <execution>
                         <goals>
