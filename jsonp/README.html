@@ -40,6 +40,7 @@
     holder.
 
     Portions Copyright 2012 Talend
+    Portions Copyright 2013 Glen Mazza
 -->
 <html>
 <head id="scriptComesHere">
@@ -112,7 +113,7 @@ mvn clean compile exec:java</pre></blockquote>
             <a href="http://grizzly.java.net/">Grizzly</a>
         </p>
         <p>A <a href="http://wadl.java.net/#spec">WADL description</a> may be then accessed at the URL:</p>
-        <blockquote><code><a href="http://localhost:9998/jsonp/application.wadl">http://localhost:9998/jsonp/application.wadl</a></code></blockquote>
+        <blockquote><code><a href="http://localhost:9998/jsonp?_wadl">http://localhost:9998/jsonp?_wadl</a></code></blockquote>
        <p>Following steps are using <a href="http://curl.haxx.se/">cURL</a> command line tool: 
         <p>Get the list of changes in JSON format:</p>
         <blockquote><pre>curl -HAccept:application/json http://localhost:9998/jsonp/changes</pre></blockquote>
