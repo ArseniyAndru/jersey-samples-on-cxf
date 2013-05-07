@@ -16,7 +16,7 @@ public class Main {
     protected Main() throws Exception {
         JAXRSServerFactoryBean bean = new JAXRSServerFactoryBean();
         JsonpInInterceptor jii = new JsonpInInterceptor();
-        jii.setAcceptType("application/json");
+        jii.setAcceptType("application/x+javascript");
         bean.getInInterceptors().add(jii);
         bean.getOutInterceptors().add(new JsonpPreStreamInterceptor());
         bean.getOutInterceptors().add(new JsonpPostStreamInterceptor());
