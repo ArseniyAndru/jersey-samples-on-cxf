@@ -101,7 +101,7 @@ public class MainTest {
         try {
         	InputStream is = wc.get(InputStream.class);
         } catch (Exception ex) {
-        	assertTrue(ex.getMessage().contains("Authentication credentials are required"));
+        	assertTrue(ex instanceof javax.ws.rs.NotAuthorizedException);
         }
     }
 
@@ -121,8 +121,7 @@ public class MainTest {
         } catch (Exception ex) {
             String msg = ex.getMessage();
             System.out.println("Error message = "  + msg);
-        	assertTrue(msg.contains("ClientWebApplicationException"));
+        	assertTrue(msg.contains("ClientException"));
         }
     }
-
 }
