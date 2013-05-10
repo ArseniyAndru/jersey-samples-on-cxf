@@ -18,7 +18,6 @@ public class Main {
         JsonpInInterceptor jii = new JsonpInInterceptor();
         jii.setAcceptType("application/x+javascript");
         bean.getInInterceptors().add(jii);
-        bean.getOutInterceptors().add(new JsonpPreStreamInterceptor());
         bean.getOutInterceptors().add(new JsonpPostStreamInterceptor());
         
 
@@ -28,6 +27,7 @@ public class Main {
     
         List<Object> providerList = new ArrayList<Object>();
         providerList.add(new org.codehaus.jackson.jaxrs.JacksonJsonProvider());
+        providerList.add(new org.apache.cxf.jaxrs.provider.jsonp.JsonpJaxrsWriterInterceptor()); 
         bean.setProviders(providerList);
 
         bean.setAddress("http://localhost:9998/jsonp");
